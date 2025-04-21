@@ -2,21 +2,23 @@
 const styles = {
   container: {
     fontFamily: "'Inter', sans-serif",
-    backgroundColor: 'transparent',
     color: '#fff',
     scrollBehavior: 'smooth',
     overflowX: 'hidden',
+    margin: 0,
+    padding: 0,
   },
   section: {
     padding: '80px 20px',
     minHeight: '100vh',
     backgroundColor: '#000',
     color: '#fff',
-    overflow: 'hidden',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     textAlign: 'center',
+    margin: 0,
+    paddingInline: 0,
   },
   anchorHeader: {
     fontSize: '2.5rem',
@@ -57,6 +59,9 @@ const styles = {
     width: '100%',
     height: '100vh',
     overflow: 'hidden',
+    margin: 0,
+    padding: 0,
+    backgroundColor: '#000',
   },
   videoBackground: {
     position: 'absolute',
@@ -66,6 +71,15 @@ const styles = {
     height: '100%',
     objectFit: 'cover',
     zIndex: -1,
+  },
+  heroOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+    zIndex: 0,
   },
   heroContent: {
     position: 'relative',
@@ -85,91 +99,47 @@ const styles = {
     textAlign: 'left',
     lineHeight: '1.3',
   },
-  masonryGrid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-    gridAutoRows: '200px',
-    gap: '20px',
-    justifyContent: 'center',
-    alignItems: 'center',
-    maxWidth: '1200px',
-    margin: '0 auto 40px auto',
-  },
-  masonryItem: {
-    borderRadius: '12px',
-    overflow: 'hidden',
-    boxShadow: '0 4px 14px rgba(0, 0, 0, 0.2)',
-    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-  },
-  masonryItemHover: {
-    transform: 'scale(1.03)',
-    boxShadow: '0 6px 20px rgba(0, 0, 0, 0.3)',
-  },
-  backButton: {
-    position: 'absolute',
-    top: '20px',
-    left: '20px',
-    background: 'none',
-    border: 'none',
-    color: '#fff',
-    fontSize: '1.5rem',
-    cursor: 'pointer',
-    zIndex: 10,
-  },
-  loader: {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    width: '100vw',
-    height: '100vh',
-    backgroundColor: '#000',
-    color: '#fff',
+  contactContainer: {
     display: 'flex',
-    justifyContent: 'center',
+    flexDirection: 'column',
     alignItems: 'center',
-    zIndex: 2000,
-    transition: 'opacity 1s ease-in-out',
-  },
-  loaderText: {
-    fontSize: '3rem',
-    animation: 'fadeSlide 2s ease-in-out forwards',
-    color: '#fff',
-  },
-  projectGrid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
     gap: '30px',
-    marginTop: '40px',
-    padding: '0 20px 60px 20px',
+    padding: '60px 20px',
     backgroundColor: '#000',
-    color: '#fff',
   },
-  projectCard: {
-    backgroundColor: '#111',
-    padding: '20px',
-    borderRadius: '16px',
+  contactHeader: {
+    fontSize: '2.8rem',
+    marginBottom: '30px',
     textAlign: 'center',
-    transition: 'transform 0.5s ease, opacity 0.5s ease',
-    cursor: 'pointer',
-    boxShadow: '0 4px 14px rgba(255,255,255,0.05)',
-  },
-  moreProjectsButton: {
-    padding: '12px 24px',
-    borderRadius: '30px',
-    textDecoration: 'none',
-    fontWeight: 'bold',
-    fontSize: '16px',
-    display: 'block',
-    margin: '40px auto 0 auto',
     color: '#fff',
-    background: '#222',
-    border: '1px solid #444',
-    transition: 'all 0.4s ease-in-out',
-    cursor: 'pointer',
+
   },
+  contactIcons: {
+    display: 'flex',
+    gap: '40px',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+  },
+  contactLink: {
+    display: 'inline-block',
+    fontSize: '1.2rem',
+    color: '#fff',
+    border: '1px solid #fff',
+    padding: '12px 24px',
+    borderRadius: '8px',
+    textDecoration: 'none',
+    transition: 'all 0.3s ease',
+    position: 'relative',
+    overflow: 'hidden',
+  },
+  contactLinkHover: `
+    .contactLink:hover {
+      color: #fff;
+      background: linear-gradient(90deg, #6e3fff, #d36fff);
+      border-color: transparent;
+      transform: translateY(-3px);
+    }
+  `,
 };
 
 const navHoverStyle = `
@@ -192,7 +162,7 @@ const navHoverStyle = `
 
 if (typeof document !== 'undefined') {
   const styleEl = document.createElement('style');
-  styleEl.innerHTML = navHoverStyle;
+  styleEl.innerHTML = navHoverStyle + styles.contactLinkHover;
   document.head.appendChild(styleEl);
 }
 

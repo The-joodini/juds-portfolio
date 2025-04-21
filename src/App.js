@@ -35,43 +35,43 @@ const App = () => {
     <>
       {location.pathname === '/' && (
         <>
-              <nav style={styles.nav}>
-                <ul style={styles.navList}>
-                  <li>
-                    <Link
-                      to="work"
-                      smooth
-                      duration={500}
-                      className="navLink"
-                      style={styles.navLink}
-                    >
-                      Work
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="about"
-                      smooth
-                      duration={500}
-                      className="navLink"
-                      style={styles.navLink}
-                    >
-                      About
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="contact"
-                      smooth
-                      duration={500}
-                      className="navLink"
-                      style={styles.navLink}
-                    >
-                      Contact
-                    </Link>
-                  </li>
-                </ul>
-              </nav>
+             <nav style={styles.nav}>
+  <ul style={styles.navList}>
+    <li>
+      <Link
+        to="work"
+        smooth
+        duration={500}
+        style={styles.navLink}
+        className="navLink"
+      >
+        Work
+      </Link>
+    </li>
+    <li>
+      <Link
+        to="about"
+        smooth
+        duration={500}
+        style={styles.navLink}
+        className="navLink"
+      >
+        About
+      </Link>
+    </li>
+    <li>
+      <Link
+        to="contact"
+        smooth
+        duration={500}
+        style={styles.navLink}
+        className="navLink"
+      >
+        Contact
+      </Link>
+    </li>
+  </ul>
+</nav>
 
 
           <Header />
