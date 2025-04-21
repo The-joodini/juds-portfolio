@@ -6,6 +6,7 @@ const styles = {
       color: '#fff',
       scrollBehavior: 'smooth',
       overflowX: 'hidden',
+      overflowY: 'auto',
     },
     section: {
       padding: '80px 20px',
@@ -61,6 +62,7 @@ const styles = {
       height: '100%',
       objectFit: 'cover',
       zIndex: -1,
+      pointerEvents: 'none',
     },
     heroContent: {
       position: 'relative',
