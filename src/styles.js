@@ -2,7 +2,7 @@
 const styles = {
     container: {
       fontFamily: "'Inter', sans-serif",
-      backgroundColor: '#000',
+      backgroundColor: 'transparent',
       color: '#fff',
       scrollBehavior: 'smooth',
       overflowX: 'hidden',
@@ -27,7 +27,7 @@ const styles = {
       backgroundColor: 'rgba(0, 0, 0, 0.85)',
       display: 'flex',
       justifyContent: 'center',
-      zIndex: 1000,
+      zIndex: 100,
     },
     navList: {
       position: 'relative',
@@ -159,3 +159,4 @@ const styles = {
   };
   
   export default styles;
+  
