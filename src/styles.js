@@ -15,8 +15,9 @@ const styles = {
     },
     anchorHeader: {
       fontSize: '2.5rem',
-      marginBottom: '1rem',
+      marginBottom: '2rem',
       color: '#fff',
+      textAlign: 'center',
     },
     nav: {
       position: 'fixed',
@@ -79,6 +80,29 @@ const styles = {
       textAlign: 'left',
       lineHeight: '1.3',
     },
+    masonryGrid: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+      gridAutoRows: '200px',
+      gap: '20px',
+      justifyContent: 'center',
+      alignItems: 'center',
+      maxWidth: '1200px',
+      margin: '0 auto 40px auto',
+    },
+    masonryItem: {
+      borderRadius: '12px',
+      overflow: 'hidden',
+      boxShadow: '0 4px 14px rgba(0, 0, 0, 0.2)',
+      transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+    },
+    masonryItemHover: {
+      transform: 'scale(1.03)',
+      boxShadow: '0 6px 20px rgba(0, 0, 0, 0.3)',
+    },
     backButton: {
       position: 'absolute',
       top: '20px',
@@ -109,22 +133,6 @@ const styles = {
       animation: 'fadeSlide 2s ease-in-out forwards',
       color: '#fff',
     },
-    masonryGrid: {
-      display: 'flex',
-      marginLeft: '-16px',
-      width: 'auto',
-      justifyContent: 'center',
-    },
-    masonryColumn: {
-      paddingLeft: '16px',
-      backgroundClip: 'padding-box',
-    },
-    masonryItem: {
-      marginBottom: '16px',
-      borderRadius: '12px',
-      boxShadow: '0 4px 14px rgba(0,0,0,0.2)',
-      overflow: 'hidden',
-    },
     projectGrid: {
       display: 'grid',
       gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
@@ -154,7 +162,8 @@ const styles = {
       background: '#222',
       border: '1px solid #444',
       transition: 'all 0.4s ease-in-out',
-      marginTop: '40px',
+      margin: '40px auto 0 auto',
+      cursor: 'pointer',
     },
   };
   
