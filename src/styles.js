@@ -5,6 +5,7 @@ const styles = {
       backgroundColor: '#000',
       color: '#fff',
       scrollBehavior: 'smooth',
+      overflowX: 'hidden',
     },
     section: {
       padding: '80px 20px',
@@ -45,23 +46,30 @@ const styles = {
       position: 'relative',
       transition: 'color 0.3s ease',
     },
-    videoBackground: {
+    heroContainer: {
+      position: 'relative',
       width: '100%',
-      height: '60vh',
-      objectFit: 'cover',
+      height: '100vh',
+      overflow: 'hidden',
+    },
+    videoBackground: {
       position: 'absolute',
       top: 0,
       left: 0,
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover',
       zIndex: -1,
     },
-    heroOverlay: {
+    heroContent: {
       position: 'relative',
-      height: '60vh',
+      height: '100%',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
+      alignItems: 'flex-start',
       padding: '0 40px',
-      backgroundColor: '#000',
+      zIndex: 1,
     },
     heroText: {
       fontSize: '3.5rem',
@@ -70,7 +78,6 @@ const styles = {
       maxWidth: '800px',
       textAlign: 'left',
       lineHeight: '1.3',
-      zIndex: 2,
     },
     backButton: {
       position: 'absolute',
