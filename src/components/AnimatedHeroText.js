@@ -10,42 +10,59 @@ const heroWords = [
 ];
 
 const AnimatedText = () => {
-  const [displayedText, setDisplayedText] = useState('');
+  const [text, setText] = useState('');
   const [wordIndex, setWordIndex] = useState(0);
-  const [charIndex, setCharIndex] = useState(0);
-  const [deleting, setDeleting] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     const currentWord = heroWords[wordIndex];
+    const isComplete = text === currentWord;
+    const isEmpty = text === '';
 
-    const typingSpeed = deleting ? 40 : 90;
+    const speed = isDeleting ? 40 : 80;
 
     const timeout = setTimeout(() => {
-      if (!deleting) {
-        setDisplayedText(currentWord.slice(0, charIndex + 1));
-        setCharIndex(charIndex + 1);
+      setText((prev) =>
+        isDeleting
+          ? currentWord.slice(0, prev.length - 1)
+          : currentWord.slice(0, prev.length + 1)
+      );
 
-        if (charIndex + 1 === currentWord.length) {
-          setTimeout(() => setDeleting(true), 1000);
-        }
-      } else {
-        setDisplayedText(currentWord.slice(0, charIndex - 1));
-        setCharIndex(charIndex - 1);
-
-        if (charIndex === 0) {
-          setDeleting(false);
-          setWordIndex((prev) => (prev + 1) % heroWords.length);
-        }
+      if (!isDeleting && isComplete) {
+        setTimeout(() => setIsDeleting(true), 1000);
+      } else if (isDeleting && isEmpty) {
+        setIsDeleting(false);
+        setWordIndex((prev) => (prev + 1) % heroWords.length);
       }
-    }, typingSpeed);
+    }, speed);
 
     return () => clearTimeout(timeout);
-  }, [charIndex, deleting, wordIndex]);
+  }, [text, isDeleting, wordIndex]);
 
   return (
-    <div style={styles.heroText}>
-      I’ve helped companies with
-      <span style={styles.animatedText}> {displayedText}</span>
+    <div
+      style={{
+        ...styles.heroText,
+        fontSize: '2.2rem',
+        marginTop: '40px',
+        display: 'inline-flex',
+        flexWrap: 'nowrap',
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        alignItems: 'center',
+      }}
+    >
+      I’ve helped companies with&nbsp;
+      <span
+        style={{
+          ...styles.animatedText,
+          whiteSpace: 'nowrap',
+          display: 'inline-block',
+          minWidth: '150px',
+        }}
+      >
+        {text}
+      </span>
     </div>
   );
 };

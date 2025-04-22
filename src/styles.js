@@ -1,3 +1,4 @@
+
 const styles = {
   container: {
     fontFamily: "'Inter', sans-serif",
@@ -118,28 +119,76 @@ const styles = {
     fontSize: '3.5rem',
     fontWeight: 'bold',
     color: '#fff',
-    maxWidth: '800px',
-    textAlign: 'left',
-    lineHeight: '1.3',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textAlign: 'center', // or 'left', if you're using padding to offset
   },
+  
   animatedText: {
     color: '#d36fff',
     marginLeft: '8px',
     whiteSpace: 'nowrap',
   },
+
+  // Base Button Style
+  buttonBase: {
+    display: 'inline-block',
+    padding: '12px 28px',
+    fontSize: '1rem',
+    fontWeight: '600',
+    color: '#fff',
+    background: 'linear-gradient(90deg, #6e3fff, #d36fff)',
+    border: 'none',
+    borderRadius: '40px',
+    cursor: 'pointer',
+    transition: 'all 0.3s ease-in-out',
+    boxShadow: '0 4px 12px rgba(211, 111, 255, 0.3)',
+    position: 'relative',
+    zIndex: 1,
+  },
+
   backButton: {
+    padding: '10px 18px',
     position: 'absolute',
     top: '20px',
     left: '20px',
-    padding: '10px 18px',
-    fontSize: '1rem',
-    backgroundColor: 'rgba(255,255,255,0.1)',
-    color: '#fff',
+    background: 'rgba(255,255,255,0.1)',
     border: '1px solid #fff',
+    fontSize: '1rem',
     borderRadius: '8px',
+    color: '#fff',
     cursor: 'pointer',
     zIndex: 5,
   },
+
+  moreProjectsButton: {
+    marginTop: '40px',
+    padding: '10px 18px',
+    fontSize: '1rem',
+    color: '#fff',
+    backgroundColor: 'rgba(255,255,255,0.1)',
+    border: '1px solid #fff',
+    borderRadius: '8px',
+    cursor: 'pointer',
+    fontWeight: '500',
+    transition: 'all 0.3s ease-in-out',
+    position: 'relative',
+    zIndex: 1,
+  },
+  
+
+  contactButton: {
+    padding: '14px 28px',
+    fontSize: '1rem',
+    background: 'linear-gradient(90deg, #6e3fff, #d36fff)',
+    border: 'none',
+    borderRadius: '40px',
+    color: '#fff',
+    cursor: 'pointer',
+    fontWeight: '600',
+    transition: 'all 0.3s ease-in-out',
+  },
+
   gridItem: {
     breakInside: 'avoid',
     marginBottom: '20px',
@@ -153,21 +202,6 @@ const styles = {
     height: 'auto',
     display: 'block',
     borderRadius: '12px',
-  },
-  moreProjectsButton: {
-    marginTop: '40px',
-    padding: '12px 28px',
-    fontSize: '1rem',
-    fontWeight: '600',
-    color: '#fff',
-    background: 'linear-gradient(90deg, #6e3fff, #d36fff)',
-    border: 'none',
-    borderRadius: '50px',
-    cursor: 'pointer',
-    transition: 'all 0.3s ease',
-    boxShadow: '0 4px 12px rgba(211, 111, 255, 0.3)',
-    position: 'relative',
-    zIndex: 1,
   },
   contactContainer: {
     display: 'flex',
@@ -186,6 +220,28 @@ const styles = {
     marginBottom: '30px',
     textAlign: 'center',
     color: '#fff',
+  },
+  contactForm: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '20px',
+    width: '100%',
+    maxWidth: '600px',
+    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+    padding: '40px',
+    borderRadius: '16px',
+    boxShadow: '0 0 30px rgba(211, 111, 255, 0.15)',
+    transition: 'transform 0.3s ease',
+  },
+  contactInput: {
+    padding: '16px',
+    borderRadius: '10px',
+    border: '1px solid #444',
+    backgroundColor: '#111',
+    color: '#fff',
+    fontSize: '1rem',
+    outline: 'none',
+    transition: 'border-color 0.3s ease',
   },
   contactIcons: {
     display: 'flex',
@@ -240,13 +296,6 @@ const masonryHoverStyle = `
   }
 `;
 
-const moreProjectsHoverStyle = `
-  .moreProjectsButton:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(211, 111, 255, 0.45);
-  }
-`;
-
 const masonryLayoutCSS = `
   .masonry-grid {
     display: flex;
@@ -259,6 +308,23 @@ const masonryLayoutCSS = `
   }
   .masonry-column > .grid-item {
     margin-bottom: 20px;
+  }
+`;
+
+const contactInputFocus = `
+  input:focus, textarea:focus {
+    border-color: #d36fff;
+  }
+`;
+
+const allButtonsHover = `
+  button:hover,
+  .moreProjectsButton:hover,
+  .contact-submit:hover,
+  .navLink:hover,
+  .backButton:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(211, 111, 255, 0.45);
   }
 `;
 
@@ -281,8 +347,9 @@ if (typeof document !== 'undefined') {
     navHoverStyle +
     styles.contactLinkHover +
     masonryHoverStyle +
-    moreProjectsHoverStyle +
     masonryLayoutCSS +
+    contactInputFocus +
+    allButtonsHover +
     globalResetCSS;
   document.head.appendChild(styleEl);
 }

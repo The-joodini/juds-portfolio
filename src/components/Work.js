@@ -53,7 +53,7 @@ const Work = () => {
         style={styles.moreProjectsButton}
         className="moreProjectsButton"
       >
-        More Projects →
+        More Projects
       </button>
     </section>
   );
