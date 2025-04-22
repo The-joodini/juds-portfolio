@@ -3,11 +3,14 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Link } from 'react-scroll';
 import { Routes, Route, useLocation } from 'react-router-dom';
+
 import Header from './components/Header';
 import Work from './components/Work';
 import Contact from './components/Contact';
 import DraggableAbout from './components/DraggableAbout';
 import Projects from './components/Projects';
+import Loader from './components/Loader'; // ✅ custom loader
+
 import styles from './styles';
 
 const App = () => {
@@ -23,55 +26,53 @@ const App = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  if (loading) {
-    return (
-      <div style={styles.loader}>
-        <p style={styles.loaderText}>Hi, I’m J.</p>
-      </div>
-    );
-  }
-
   return (
     <>
-      {location.pathname === '/' && (
+      {/* ✅ Loader overlays everything */}
+      <Loader isVisible={loading} />
+
+      {!loading && location.pathname === '/' && (
         <>
-             <nav style={styles.nav}>
-  <ul style={styles.navList}>
-    <li>
-      <Link
-        to="work"
-        smooth
-        duration={500}
-        style={styles.navLink}
-        className="navLink"
-      >
-        Work
-      </Link>
-    </li>
-    <li>
-      <Link
-        to="about"
-        smooth
-        duration={500}
-        style={styles.navLink}
-        className="navLink"
-      >
-        About
-      </Link>
-    </li>
-    <li>
-      <Link
-        to="contact"
-        smooth
-        duration={500}
-        style={styles.navLink}
-        className="navLink"
-      >
-        Contact
-      </Link>
-    </li>
-  </ul>
-</nav>
+          <nav style={styles.nav}>
+          <div style={styles.navContainer}>
+            <div style={styles.logo}>J.</div>
+            <ul style={styles.navList}>
+              <li>
+                <Link
+                  to="work"
+                  smooth
+                  duration={500}
+                  style={styles.navLink}
+                  className="navLink"
+                >
+                  Work
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="about"
+                  smooth
+                  duration={500}
+                  style={styles.navLink}
+                  className="navLink"
+                >
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="contact"
+                  smooth
+                  duration={500}
+                  style={styles.navLink}
+                  className="navLink"
+                >
+                  Contact
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </nav>
 
 
           <Header />

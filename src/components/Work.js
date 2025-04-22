@@ -8,9 +8,11 @@ const projectImages = [
   '/gallery/campFeverShirt.jpg',
   '/gallery/cokeCan.png',
   '/gallery/momFries.jpg',
-  '/gallery/img4.jpg',
-  '/gallery/img5.jpg',
-  '/gallery/img6.jpg',
+  '/gallery/cheesesteak.png',
+  '/gallery/Threatlocker_12step.jpg',
+  '/gallery/ThreatlockerRace.png',
+  '/gallery/MomsFuego.jpg',
+
 ];
 
 const Work = () => {
@@ -34,13 +36,13 @@ const Work = () => {
         {projectImages.map((src, index) => (
           <div
             key={index}
-            style={styles.masonryItem}
-            className="masonry-hover"
+            className="grid-item masonry-hover"
+            style={styles.gridItem}
           >
             <img
               src={src}
               alt={`Project ${index + 1}`}
-              style={{ width: '100%', borderRadius: '12px', display: 'block' }}
+              style={styles.gridImage}
             />
           </div>
         ))}
@@ -53,7 +55,6 @@ const Work = () => {
       >
         More Projects →
       </button>
-
     </section>
   );
 };

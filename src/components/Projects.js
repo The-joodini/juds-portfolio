@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import styles from '../styles';
 import { useNavigate } from 'react-router-dom';
+import styles from '../styles';
+import './Projects.css';
 
 const heroWords = [
   'project management',
@@ -12,7 +13,6 @@ const heroWords = [
 
 const Projects = () => {
   const navigate = useNavigate();
-
   const [displayedText, setDisplayedText] = useState('');
   const [wordIndex, setWordIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
@@ -45,39 +45,54 @@ const Projects = () => {
   }, [charIndex, deleting, wordIndex]);
 
   const projectList = [
-    { title: 'Project Alpha', image: '/gallery/img1.jpg' },
-    { title: 'Project Beta', image: '/gallery/img2.jpg' },
-    { title: 'Project Gamma', image: '/gallery/img3.jpg' },
-    { title: 'Project Delta', image: '/gallery/img4.jpg' },
+    {
+      title: 'Project Alpha',
+      image: '/gallery/campFeverShirt.jpg',
+      description: 'UI design for streetwear campaign',
+    },
+    {
+      title: 'Project Beta',
+      image: '/gallery/momFries.jpg',
+      description: 'Branding & food truck launch',
+    },
+    {
+      title: 'Project Gamma',
+      image: '/gallery/cheesesteak.png',
+      description: 'Social media ad concept',
+    },
+    {
+      title: 'Project Delta',
+      image: '/gallery/img4.jpg',
+      description: 'Visual campaign for local events',
+    },
   ];
 
   return (
     <>
-      <div style={styles.heroOverlay}>
-        <video autoPlay loop muted playsInline style={styles.videoBackground}>
-          <source src="/gallery/gradient-loop.mp4" type="video/mp4" />
+      <div className="projects-hero">
+        <video autoPlay loop muted playsInline className="projects-video">
+          <source src="/videoback.mp4" type="video/mp4" />
         </video>
+        <div className="projects-overlay" />
         <button onClick={() => navigate('/')} style={styles.backButton}>
           ← Back
         </button>
-        <div style={styles.heroText}>
+        <div className="projects-content">
           I’ve helped companies with
-          <span style={styles.animatedText}> {displayedText}</span>
+          <span className="projects-highlight"> {displayedText}</span>
         </div>
       </div>
 
       <section style={{ ...styles.section, paddingTop: '60px' }}>
-        <h2 style={{ ...styles.anchorHeader, textAlign: 'center' }}>Our Projects</h2>
+        <h2 className="section-title">Our Projects</h2>
 
-        <div style={styles.projectGrid}>
+        <div className="project-grid">
           {projectList.map((proj, i) => (
-            <div key={i} style={styles.projectCard} className="project-hover">
-              <img
-                src={proj.image}
-                alt={proj.title}
-                style={{ width: '100%', borderRadius: '16px' }}
-              />
-              <h3 style={{ textAlign: 'center', marginTop: '10px' }}>{proj.title}</h3>
+            <div key={i} className="project-card">
+              <img src={proj.image} alt={proj.title} />
+              <h3>{proj.title}</h3>
+              {/* Optional: show description below the image instead of inside hover */}
+              {/* <p className="project-description">{proj.description}</p> */}
             </div>
           ))}
         </div>

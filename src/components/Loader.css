@@ -1,0 +1,35 @@
+.loader-wrapper {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+    pointer-events: none;
+  }
+  
+  .loader-wrapper.fade-out {
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  .loader-content {
+    font-family: 'Inter', sans-serif;
+    font-size: 2.8rem;
+    text-align: center;
+    color: white;
+    animation: glitch 1s linear infinite;
+  }
+  
+  .loader-text span {
+    color: #d36fff;
+  }
+  
+  @keyframes glitch {
+    0% { text-shadow: 2px 2px #d36fff, -2px -2px #6e3fff; }
+    50% { text-shadow: -2px 2px #d36fff, 2px -2px #6e3fff; }
+    100% { text-shadow: 2px -2px #d36fff, -2px 2px #6e3fff; }
+  }
+  
