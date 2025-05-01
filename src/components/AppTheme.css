@@ -1,0 +1,33 @@
+.app-wrapper.dark {
+    background-color: #000;
+    color: #fff;
+    transition: all 0.3s ease;
+  }
+  
+  .app-wrapper.light {
+    background-color: #fff;
+    color: #000;
+    transition: all 0.3s ease;
+  }
+  
+  .themeToggle {
+    background: none;
+    border: 1px solid;
+    padding: 6px 12px;
+    font-family: 'Chivo', sans-serif;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+  }
+  
+  .app-wrapper.light .themeToggle {
+    border-color: #000;
+    color: #000;
+  }
+  
+  .app-wrapper.dark .themeToggle {
+    border-color: #fff;
+    color: #fff;
+  }
+  
