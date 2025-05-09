@@ -1,8 +1,4 @@
-const getStyles = (theme = 'dark') => {
-  const isDark = theme === 'dark';
-  const bgColor = isDark ? '#000' : '#fff';
-  const textColor = isDark ? '#fff' : '#000';
-
+const getStyles = () => {
   const navHoverStyle = `
     .navLink {
       background-color: transparent !important;
@@ -15,7 +11,7 @@ const getStyles = (theme = 'dark') => {
       bottom: -4px;
       width: 0;
       height: 2px;
-      background-color: ${textColor};
+      background-color: #fff;
       transition: width 0.4s ease, left 0.4s ease;
       transform: translateX(-50%);
     }
@@ -34,62 +30,36 @@ const getStyles = (theme = 'dark') => {
     }
   `;
 
-  const globalResetCSS = `
-    html, body, #root {
-      margin: 0;
-      padding: 0;
-      width: 100vw;
-      overflow-x: hidden;
-      background-color: ${bgColor};
-    }
-    * {
-      box-sizing: border-box;
-    }
-    .app-wrapper.dark {
-      background-color: #000;
-      color: #fff;
-      transition: all 0.3s ease;
-    }
-    .app-wrapper.light {
-      background-color: #fff;
-      color: #000;
-      transition: all 0.3s ease;
-    }
-    .themeToggle {
-      background: none;
-      border: 1px solid;
-      padding: 6px 12px;
-      font-family: 'Chivo', sans-serif;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 0.9rem;
-      transition: all 0.3s ease;
-    }
-    .app-wrapper.light .themeToggle {
-      border-color: #000;
-      color: #000;
-    }
-    .app-wrapper.dark .themeToggle {
-      border-color: #fff;
-      color: #fff;
-    }
-  `;
-
-  const carouselAnimation = `
-    @keyframes scroll {
-      from {
-        transform: translateX(0);
-      }
-      to {
-        transform: translateX(-50%);
-      }
-    }
-  `;
-
   const masonryHoverStyle = `
+    .grid-item {
+      transition: transform 0.35s ease, box-shadow 0.35s ease, filter 0.25s ease;
+    }
+
     .grid-item:hover {
-      transform: scale(1.03);
-      box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
+      transform: scale(1.04);
+      box-shadow: 0 12px 32px rgba(211, 111, 255, 0.15);
+      filter: brightness(1.1) saturate(1.05);
+    }
+  `;
+
+  const draggableAboutStyle = `
+    .draggable-text {
+      font-size: 2rem;
+      line-height: 1.6;
+      text-align: center;
+      color: #fff;
+      z-index: 0;
+      position: relative;
+      padding: 0 20px;
+      font-family: 'Cambo', serif;
+    }
+
+    .draggable-icon {
+      font-size: 5rem;
+      position: absolute;
+      user-select: none;
+      cursor: grab;
+      z-index: 5;
     }
   `;
 
@@ -97,13 +67,14 @@ const getStyles = (theme = 'dark') => {
     .masonry-grid {
       display: flex;
       margin-left: -20px;
-      width: 100%;
+      width: auto;
     }
+
     .masonry-column {
-      flex: 1;
       padding-left: 20px;
       background-clip: padding-box;
     }
+
     .masonry-column > .grid-item {
       margin-bottom: 20px;
     }
@@ -126,11 +97,37 @@ const getStyles = (theme = 'dark') => {
     }
   `;
 
+  const globalResetCSS = `
+    html, body, #root {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      overflow-x: hidden;
+      background-color: #000;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+  `;
+
+  const carouselAnimation = `
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+  `;
+
   if (typeof document !== 'undefined') {
     const styleEl = document.createElement('style');
     styleEl.innerHTML =
       navHoverStyle +
       masonryHoverStyle +
+      draggableAboutStyle +
       masonryLayoutCSS +
       contactInputFocus +
       allButtonsHover +
@@ -142,7 +139,7 @@ const getStyles = (theme = 'dark') => {
   return {
     container: {
       fontFamily: "'Cambo', serif",
-      color: textColor,
+      color: '#fff',
       scrollBehavior: 'smooth',
       margin: 0,
       padding: 0,
@@ -150,15 +147,15 @@ const getStyles = (theme = 'dark') => {
       minHeight: '100vh',
       boxSizing: 'border-box',
       overflowX: 'hidden',
-      backgroundColor: bgColor,
+      backgroundColor: '#000',
       position: 'relative',
     },
     section: {
       width: '100vw',
       padding: '80px 40px',
       minHeight: '100vh',
-      backgroundColor: bgColor,
-      color: textColor,
+      backgroundColor: '#000',
+      color: '#fff',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
@@ -171,7 +168,7 @@ const getStyles = (theme = 'dark') => {
       fontFamily: "'Chivo', sans-serif",
       fontSize: '2.5rem',
       marginBottom: '2rem',
-      color: textColor,
+      color: '#fff',
       textAlign: 'center',
     },
     nav: {
@@ -202,7 +199,7 @@ const getStyles = (theme = 'dark') => {
       fontFamily: "'Cambo', sans-serif",
       fontSize: '1.8rem',
       fontWeight: 'bold',
-      color: textColor,
+      color: '#fff',
       letterSpacing: '2px',
       cursor: 'pointer',
     },
@@ -214,7 +211,7 @@ const getStyles = (theme = 'dark') => {
       margin: 0,
     },
     navLink: {
-      color: textColor,
+      color: '#fff',
       textDecoration: 'none',
       fontSize: '18px',
       cursor: 'pointer',
@@ -223,63 +220,11 @@ const getStyles = (theme = 'dark') => {
       transition: 'color 0.3s ease',
       backgroundColor: 'transparent',
     },
-    heroContainer: {
-      position: 'relative',
-      width: '100vw',
-      height: '100vh',
-      overflow: 'hidden',
-      margin: 0,
-      padding: 0,
-      backgroundColor: bgColor,
-    },
-    videoBackground: {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100vw',
-      height: '100vh',
-      objectFit: 'cover',
-      zIndex: -1,
-    },
-    heroOverlay: {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100vw',
-      height: '100vh',
-      backgroundColor: isDark ? 'rgba(0, 0, 0, 0.4)' : 'rgba(255, 255, 255, 0.4)',
-      zIndex: 0,
-    },
-    heroContent: {
-      position: 'relative',
-      height: '100%',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'flex-start',
-      padding: '0 40px',
-      zIndex: 1,
-    },
-    heroText: {
-      fontFamily: "'Chivo', sans-serif",
-      fontSize: '3.5rem',
-      fontWeight: 'bold',
-      color: textColor,
-      whiteSpace: 'nowrap',
-      overflow: 'hidden',
-      textAlign: 'center',
-    },
-    animatedText: {
-      color: '#d36fff',
-      marginLeft: '8px',
-      whiteSpace: 'nowrap',
-      fontFamily: "'Chivo', sans-serif",
-    },
     gridItem: {
       breakInside: 'avoid',
       marginBottom: '20px',
       width: '100%',
-      transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+      transition: 'transform 0.35s ease, box-shadow 0.35s ease',
       cursor: 'pointer',
       borderRadius: '12px',
       overflow: 'hidden',

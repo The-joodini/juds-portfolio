@@ -1,78 +1,92 @@
 // Work.js
 import React, { useState } from 'react';
 import Masonry from 'react-masonry-css';
-import { Link } from 'react-router-dom';
-import styles from '../styles';
-import 'aos/dist/aos.css';
+import { useNavigate } from 'react-router-dom';
+import getStyles from '../styles';
 
-const projects = [
-  { id: 'camp-fever', title: 'Camp Fever Shirt', image: '/gallery/campFeverShirt.jpg', category: 'Branding' },
-  { id: 'coke-can', title: 'Coke Can Design', image: '/gallery/cokeCan.png', category: 'Branding' },
-  { id: 'mom-fries', title: 'Mom’s Fries Ad', image: '/gallery/momFries.jpg', category: 'UI' },
-  { id: 'cheesesteak', title: 'Cheesesteak Poster', image: '/gallery/cheesesteak.png', category: 'UI' },
-  { id: 'threatlocker-steps', title: 'Threatlocker 12-Step', image: '/gallery/Threatlocker_12step.jpg', category: 'Animation' },
-  { id: 'threatlocker-race', title: 'Threatlocker Race Campaign', image: '/gallery/ThreatlockerRace.png', category: 'Animation' },
-  { id: 'moms-fuego', title: 'Mom’s Fuego Branding', image: '/gallery/MomsFuego.jpg', category: 'Branding' },
+const projectImages = [
+  {
+    id: 'camp-fever',
+    src: '/gallery/campFeverShirt.jpg',
+    alt: 'Camp Fever Shirt',
+    category: 'Branding',
+  },
+  {
+    id: 'coke-can',
+    src: '/gallery/cokeCan.png',
+    alt: 'Coke Can Design',
+    category: 'Branding',
+  },
+  {
+    id: 'mom-fries',
+    src: '/gallery/momFries.jpg',
+    alt: 'Mom’s Fries Ad',
+    category: 'UI',
+  },
+  {
+    id: 'cheesesteak',
+    src: '/gallery/cheesesteak.png',
+    alt: 'Cheesesteak Poster',
+    category: 'UI',
+  },
+  {
+    id: 'threatlocker-steps',
+    src: '/gallery/Threatlocker_12step.jpg',
+    alt: 'Threatlocker 12-Step',
+    category: 'UI',
+  },
+  {
+    id: 'threatlocker-race',
+    src: '/gallery/ThreatlockerRace.png',
+    alt: 'Threatlocker Race Campaign',
+    category: 'Animation',
+  },
+  {
+    id: 'moms-fuego',
+    src: '/gallery/MomsFuego.jpg',
+    alt: 'Mom’s Fuego Branding',
+    category: 'Branding',
+  },
 ];
 
 const categories = ['All', 'UI', 'Branding', 'Animation'];
 
-const breakpointColumnsObj = {
-  default: 3,
-  1100: 2,
-  700: 1,
-};
+const Work = ({ theme = 'dark' }) => {
+  const navigate = useNavigate();
+  const styles = getStyles(theme);
+  const [filter, setFilter] = useState('All');
 
-const Work = () => {
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const filteredImages =
+    filter === 'All'
+      ? projectImages
+      : projectImages.filter((img) => img.category === filter);
 
-  const filteredProjects =
-    selectedCategory === 'All'
-      ? projects
-      : projects.filter((project) => project.category === selectedCategory);
+  const breakpointColumnsObj = {
+    default: 3,
+    1100: 2,
+    700: 1,
+  };
 
   return (
     <section style={styles.section} id="work">
       <h2 style={styles.anchorHeader}>My Work</h2>
 
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          gap: '16px',
-          marginBottom: '40px',
-          flexWrap: 'wrap',
-        }}
-      >
+      {/* Filter Buttons */}
+      <div style={{ display: 'flex', gap: '12px', marginBottom: '40px', justifyContent: 'center', flexWrap: 'wrap' }}>
         {categories.map((cat) => (
           <button
             key={cat}
-            onClick={() => setSelectedCategory(cat)}
+            onClick={() => setFilter(cat)}
             style={{
+              padding: '8px 16px',
+              border: `1px solid ${theme === 'dark' ? '#fff' : '#000'}`,
+              borderRadius: '20px',
+              cursor: 'pointer',
+              background: filter === cat ? '#d36fff' : 'transparent',
+              color: filter === cat ? '#fff' : theme === 'dark' ? '#fff' : '#000',
+              transition: 'all 0.3s ease-in-out',
               fontFamily: "'Chivo', sans-serif",
               fontWeight: 500,
-              padding: '10px 22px',
-              borderRadius: '30px',
-              fontSize: '0.95rem',
-              cursor: 'pointer',
-              transition: 'all 0.3s ease',
-              border: selectedCategory === cat ? 'none' : '1px solid #fff',
-              background:
-                selectedCategory === cat
-                  ? 'linear-gradient(90deg, #6e3fff, #d36fff)'
-                  : 'transparent',
-              color: '#fff',
-              boxShadow:
-                selectedCategory === cat
-                  ? '0 4px 15px rgba(211, 111, 255, 0.4)'
-                  : 'none',
-            }}
-            onMouseEnter={(e) => {
-              if (selectedCategory !== cat)
-                e.target.style.backgroundColor = 'rgba(255,255,255,0.1)';
-            }}
-            onMouseLeave={(e) => {
-              if (selectedCategory !== cat) e.target.style.backgroundColor = 'transparent';
             }}
           >
             {cat}
@@ -80,30 +94,25 @@ const Work = () => {
         ))}
       </div>
 
+      {/* Masonry Grid */}
       <Masonry
         breakpointCols={breakpointColumnsObj}
         className="masonry-grid"
         columnClassName="masonry-column"
       >
-        {filteredProjects.map((project) => (
-          <Link
-            to={`/project/${project.id}`}
+        {filteredImages.map((project) => (
+          <div
             key={project.id}
-            style={{ textDecoration: 'none' }}
+            className="grid-item"
+            style={styles.gridItem}
+            onClick={() => navigate(`/project/${project.id}`)}
           >
-            <div
-              className="grid-item masonry-hover"
-              style={styles.gridItem}
-              data-aos="fade-up"
-              data-aos-duration="600"
-            >
-              <img
-                src={project.image}
-                alt={project.title}
-                style={styles.gridImage}
-              />
-            </div>
-          </Link>
+            <img
+              src={project.src}
+              alt={project.alt}
+              style={styles.gridImage}
+            />
+          </div>
         ))}
       </Masonry>
     </section>

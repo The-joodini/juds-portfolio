@@ -13,7 +13,6 @@ import Loader from './components/Loader';
 import ProjectDetail from './components/ProjectDetail';
 import CompaniesCarousel from './components/CompaniesCarousel';
 
-import './components/AppTheme.css'; // Theme class styles (light/dark wrapper)
 import getStyles from './styles'; // Function-based styles
 
 const App = () => {
