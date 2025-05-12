@@ -1,52 +1,49 @@
 import React, { useState } from 'react';
-import styles from '../styles';
+import './Contact.css';
 
 const Contact = () => {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
+  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Thanks for reaching out. I’ll respond faster than a loading spinner. 😉");
+    alert('Thanks for reaching out. I’ll respond faster than a loading spinner. 😉');
+    setForm({ name: '', email: '', message: '' });
   };
 
   return (
-    <section style={styles.contactContainer} id="contact">
-      <h2 style={styles.contactHeader}>Let’s Connect 👋</h2>
+    <section id="contact" className="contact-section">
+      <h2>Let’s Connect 👋</h2>
 
-      <form onSubmit={handleSubmit} style={styles.contactForm}>
+      <form onSubmit={handleSubmit} className="contact-card">
         <input
           type="text"
           name="name"
-          placeholder="Your Name (or Alias 😎)"
+          placeholder="Your Name"
           value={form.name}
           onChange={handleChange}
-          style={styles.contactInput}
+          className="contact-input"
           required
         />
         <input
           type="email"
           name="email"
-          placeholder="Email (I don’t spam, promise)"
+          placeholder="Email"
           value={form.email}
           onChange={handleChange}
-          style={styles.contactInput}
+          className="contact-input"
           required
         />
         <textarea
           name="message"
-          placeholder="Drop your thoughts, ideas, or compliments 🥳"
+          placeholder="Your Message"
           rows="5"
           value={form.message}
           onChange={handleChange}
-          style={styles.contactInput}
+          className="contact-input"
           required
-        ></textarea>
-        <button type="submit" style={styles.contactButton} className="contact-submit">
-          Send It 💌
+        />
+        <button type="submit" className="contact-submit">
+          Send It 💌
         </button>
       </form>
     </section>

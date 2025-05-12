@@ -1,6 +1,5 @@
 // src/components/CompaniesCarousel.js
 import React, { useEffect } from 'react';
-import styles from '../styles';
 
 const companyLogos = [
   '/logos/Threatlocker.svg',

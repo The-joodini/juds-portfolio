@@ -6,54 +6,67 @@ const blobs = [
   '#d36fff', '#6e3fff', '#ff6f91', '#36d1dc', '#f9ca24', '#7bed9f',
 ];
 
+// Generate a smooth staggered float animation
+const getFloatAnimation = (index) => ({
+  animate: {
+    y: [0, -20, 0, 20, 0],
+    x: [0, 15, 0, -15, 0],
+    transition: {
+      duration: 6 + index,
+      delay: index * 0.5,
+      repeat: Infinity,
+      ease: 'easeInOut',
+    },
+  },
+});
+
 const DraggableAbout = () => {
   const constraintRef = useRef(null);
 
   return (
-    <section style={styles.section} id="about">
-      <h2 style={styles.anchorHeader}>Who I Am</h2>
-
+    <section style={{ ...styles.section, padding: 0, position: 'relative' }} id="about">
       <div
         ref={constraintRef}
         style={{
           position: 'relative',
           width: '100%',
-          maxWidth: '1000px',
-          height: '600px',
-          margin: '0 auto',
+          height: '700px',
           overflow: 'hidden',
+          backgroundColor: '#000',
         }}
       >
-        {/* Paragraph UNDER blobs */}
-        <p
+        {/* Text Content */}
+        <div
           style={{
-            fontSize: '1.8rem',
-            lineHeight: '1.6',
-            textAlign: 'center',
-            zIndex: 0,
             position: 'relative',
-            padding: '0 20px',
-            color: '#fff',
-            fontFamily: "'Cambo', serif",
+            zIndex: 2,
+            height: '100%',
+            maxWidth: '900px',
+            margin: '0 auto',
+            padding: '80px 20px',
+            textAlign: 'center',
           }}
         >
-          I’m Joudi — a multidisciplinary designer and creative thinker.  
-          I turn complexity into clarity with modern visuals and human-centered experiences.
-        </p>
+          <h2 style={styles.anchorHeader}>Who I Am</h2>
 
-        <p
-          style={{
-            fontSize: '1rem',
-            textAlign: 'center',
-            marginTop: '10px',
-            color: '#aaa',
-            fontFamily: "'Chivo', sans-serif",
-            zIndex: 0,
-            position: 'relative',
-          }}
-        >
-          (drag the blobs around)
-        </p>
+          <p className="draggable-text">
+            I’m Joudi — a multidisciplinary designer and creative thinker.  
+            I turn complexity into clarity with modern visuals and human-centered experiences.
+          </p>
+
+          <p
+            style={{
+              fontSize: '1rem',
+              color: '#aaa',
+              fontFamily: "'Chivo', sans-serif",
+              marginTop: '10px',
+              zIndex: 2,
+              position: 'relative',
+            }}
+          >
+            (drag the blobs to read about me)
+          </p>
+        </div>
 
         {/* Draggable Blobs */}
         {blobs.map((color, i) => (
@@ -61,19 +74,21 @@ const DraggableAbout = () => {
             key={i}
             drag
             dragConstraints={constraintRef}
+            variants={getFloatAnimation(i)}
+            animate="animate"
             whileTap={{ cursor: 'grabbing', scale: 1.15 }}
             style={{
               position: 'absolute',
-              top: `${Math.random() * 70 + 5}%`,
-              left: `${Math.random() * 75 + 5}%`,
-              width: '100px',
-              height: '100px',
+              top: `${Math.random() * 75}%`,
+              left: `${Math.random() * 85}%`,
+              width: '120px',
+              height: '120px',
               backgroundColor: color,
               borderRadius: '50%',
               cursor: 'grab',
-              filter: 'blur(15px)',
-              zIndex: 5,
-              transition: '0.3s ease',
+              filter: 'blur(18px)',
+              zIndex: 3,
+              opacity: 0.6,
             }}
           />
         ))}

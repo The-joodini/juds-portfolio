@@ -1,0 +1,45 @@
+/* =====  Portfolio Footer  ===== */
+
+.site-footer {
+    width: 100%;
+    padding: 40px 20px;
+    background: #000;
+    color: #777;
+    font-family: "Cambo", serif;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .footer-inner {
+    width: 100%;
+    max-width: 1600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+  
+  .footer-name {
+    margin: 0;
+    color: #555;
+  }
+  
+  .footer-links {
+    list-style: none;
+    display: flex;
+    gap: 28px;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer-links a {
+    color: #777;
+    text-decoration: none;
+    transition: color 0.25s;
+  }
+  
+  .footer-links a:hover {
+    color: #d36fff;
+  }
+  

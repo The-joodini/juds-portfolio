@@ -12,15 +12,16 @@ import DraggableAbout from './components/DraggableAbout';
 import Loader from './components/Loader';
 import ProjectDetail from './components/ProjectDetail';
 import CompaniesCarousel from './components/CompaniesCarousel';
+import Footer from './components/Footer';                // ⬅️  new footer
 
-import getStyles from './styles'; // Function-based styles
+import getStyles from './styles';                         // static dark‑theme
 
 const App = () => {
   const location = useLocation();
   const [loading, setLoading] = useState(true);
-  const [theme, setTheme] = useState('dark'); // default is dark mode
-  const styles = getStyles(theme); // pass theme to styles
+  const styles = getStyles();
 
+  /* -------------------------------- effects -------------------------------- */
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
   }, []);
@@ -32,53 +33,72 @@ const App = () => {
 
   const isHome = location.pathname === '/';
 
-  const toggleTheme = () => {
-    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
-  };
-
+  /* -------------------------------- render -------------------------------- */
   return (
-    <div className={`app-wrapper ${theme}`}>
+    <div className="app-wrapper">
       <Loader isVisible={loading} />
+
+      {/* invisible anchor for “Back to Top” */}
+      <div id="top" />
 
       {!loading && isHome && (
         <>
-          {/* Navigation */}
+          {/* ---------------------------- Navigation --------------------------- */}
           <nav style={styles.nav}>
             <div style={styles.navContainer}>
               <div style={styles.logo}>J.</div>
+
               <ul style={styles.navList}>
                 <li>
-                  <Link to="work" smooth duration={500} style={styles.navLink} className="navLink">
+                  <Link
+                    to="work"
+                    smooth
+                    duration={500}
+                    style={styles.navLink}
+                    className="navLink"
+                  >
                     Work
                   </Link>
                 </li>
                 <li>
-                  <Link to="about" smooth duration={500} style={styles.navLink} className="navLink">
+                  <Link
+                    to="about"
+                    smooth
+                    duration={500}
+                    style={styles.navLink}
+                    className="navLink"
+                  >
                     About
                   </Link>
                 </li>
                 <li>
-                  <Link to="contact" smooth duration={500} style={styles.navLink} className="navLink">
+                  <Link
+                    to="contact"
+                    smooth
+                    duration={500}
+                    style={styles.navLink}
+                    className="navLink"
+                  >
                     Contact
                   </Link>
                 </li>
               </ul>
-              <button onClick={toggleTheme} className="themeToggle">
-                {theme === 'dark' ? '☀️ Light' : '🌙 Dark'}
-              </button>
             </div>
           </nav>
 
-          {/* Sections */}
+          {/* ----------------------------- Sections ---------------------------- */}
           <Header />
           <Work />
           <CompaniesCarousel />
           <DraggableAbout />
           <Contact />
+
+          {/* ------------------------------ Footer ----------------------------- */}
+          <Footer />
         </>
       )}
 
-      {/* Project Detail Route */}
+      {/* --------------------------- Route detail ----------------------------- */}
       <Routes>
         <Route path="/project/:id" element={<ProjectDetail />} />
       </Routes>
