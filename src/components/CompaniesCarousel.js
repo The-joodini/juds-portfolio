@@ -5,8 +5,7 @@ const companyLogos = [
   '/logos/Threatlocker.svg',
   '/logos/mexican camelwhite.png',
   '/logos/daveslogo.svg',
-  '/logos/amazon.png',
-  '/logos/netflix.png',
+  '/logos/Maid_in_sunshine.webp',
 ];
 
 const CompaniesCarousel = () => {
