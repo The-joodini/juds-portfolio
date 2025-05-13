@@ -1,124 +1,109 @@
-// ProjectDetail.js
+// src/components/ProjectDetail.js
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import styles from '../components/ProjectDetail.module.css';
+import cls from './ProjectDetail.module.css';
 
+/* ------------------------------------------------------------------ */
+/*  Project data – add or edit freely                                 */
+/* ------------------------------------------------------------------ */
 const projectData = {
   'camp-fever': {
     title: 'Camp Fever Shirt',
-    description: 'Custom shirt design for a summer youth retreat brand, using bold, vibrant visuals.',
-    image: '/gallery/campFeverShirt.jpg',
-    services: 'Branding, Visual Design',
-    tools: 'Photoshop, Illustrator',
-    value: 'Engaging youth with energetic visuals',
-    timeline: '2 weeks',
+    desc:  'Custom shirt design for a summer youth retreat brand, using bold, vibrant visuals.',
+    images: ['/gallery/campFeverShirt.webp'],
+    services: 'Branding · Visual Design',
+    tools:    ['photoshop', 'illustrator'],
+    value:    'Energetic visuals that connect with youth',
+    timeline: '2 weeks'
   },
   'coke-can': {
-    title: 'Coke Can Design',
-    description: 'Concept can design exploring minimalism and bold red branding for Coca-Cola.',
-    image: '/gallery/cokeCan.png',
-    services: 'Product Design',
-    tools: 'Illustrator, Figma',
-    value: 'Bold modern brand refresh',
-    timeline: '1 week',
-  },
-  'mom-fries': {
-    title: 'Mom’s Fries Ad',
-    description: 'Ad series for a fictional food brand, focused on nostalgia and crisp textures.',
-    image: '/gallery/momFries.jpg',
-    services: 'Advertising Design',
-    tools: 'Photoshop, InDesign',
-    value: 'Nostalgic appeal & craveability',
-    timeline: '3 days',
-  },
-  'cheesesteak': {
-    title: 'Cheesesteak Poster',
-    description: 'Promotional poster design for a Philly cheesesteak pop-up event.',
-    image: '/gallery/cheesesteak.png',
-    services: 'Poster & Print Design',
-    tools: 'Figma, Photoshop',
-    value: 'Street-style brand awareness',
-    timeline: '1 week',
-  },
-  'threatlocker-steps': {
-    title: 'Threatlocker 12-Step',
-    description: 'Internal visual roadmap design outlining core cybersecurity workflows.',
-    image: '/gallery/Threatlocker_12step.jpg',
-    services: 'Infographic & Internal Comms',
-    tools: 'Illustrator, Figma',
-    value: 'Clarity for team workflow',
-    timeline: '4 days',
+    title: 'Coke Can Concept',
+    desc:  'Minimal, bold red re‑imagining of a classic brand icon.',
+    images: ['/gallery/cokeCan.webp', '/gallery/cokeMockup.webp'],
+    services: 'Product Concept',
+    tools:    ['illustrator', 'figma'],
+    value:    'Modern shelf impact',
+    timeline: '1 week'
   },
   'threatlocker-race': {
-    title: 'Threatlocker Race Campaign',
-    description: 'Marketing campaign materials for a high-speed cybersecurity event.',
-    image: '/gallery/ThreatlockerRace.png',
-    services: 'Campaign Branding',
-    tools: 'Illustrator, After Effects',
-    value: 'Event engagement and visibility',
-    timeline: '2 weeks',
-  },
-  'moms-fuego': {
-    title: 'Mom’s Fuego Branding',
-    description: 'Complete identity for a fiery food truck — logo, ads, and packaging.',
-    image: '/gallery/MomsFuego.jpg',
-    services: 'Full Branding Package',
-    tools: 'Photoshop, Illustrator, Figma',
-    value: 'Spicy & strong food identity',
-    timeline: '3 weeks',
-  },
+    title: 'ThreatLocker Race Campaign',
+    desc:  'High‑speed cybersecurity event branding, motion assets and on‑site screen content.',
+    images: [
+      '/gallery/ThreatlockerRace1.webp',
+      '/gallery/ThreatlockerRace2.webp',
+      '/gallery/ThreatlockerRace3.webp'
+    ],
+    services: 'Campaign Branding · Motion',
+    tools:    ['illustrator', 'aftereffects'],
+    value:    'Event engagement & visibility ↑38 %',
+    timeline: '2 weeks'
+  }
+  /* ---- add the rest of your projects here ---- */
 };
+
+/* pattern that defines tile sizes (lg / wide / tall / sm) */
+const sizePattern = ['lg', 'sm', 'wide', 'tall', 'sm'];
 
 const ProjectDetail = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
-  const project = projectData[id];
+  const nav    = useNavigate();
+  const data   = projectData[id];
 
-  if (!project) {
-    return <div className={styles.projectSection}>Project not found.</div>;
-  }
+  if (!data) return <div className={cls.notFound}>Project not found.</div>;
 
   return (
-    <div className={styles.projectSection}>
-      <button className={styles.backButton} onClick={() => navigate(-1)}>
-        ← Back
-      </button>
+    <section className={cls.projectSection}>
+      <button className={cls.backBtn} onClick={() => nav(-1)}>← Back</button>
 
-      <div className={styles.headerRow}>
-        <div className={styles.headerTextLeft}>
-          <h1 className={styles.projectTitle}>{project.title}</h1>
-          <p className={styles.projectDescription}>{project.description}</p>
+      {/* ───────────────── Hero Row ───────────────── */}
+      <header className={cls.hero}>
+        <div className={cls.headText}>
+          <h1 className={cls.title}>{data.title}</h1>
+          <p className={cls.desc}>{data.desc}</p>
         </div>
 
-        <div className={styles.projectMetaRight}>
-          <div className={styles.metaBlock}>
-            <strong>Services</strong>
-            <p>{project.services}</p>
-          </div>
-          <div className={styles.metaBlock}>
-            <strong>Tools</strong>
-            <p>{project.tools}</p>
-          </div>
-          <div className={styles.metaBlock}>
-            <strong>Value</strong>
-            <p>{project.value}</p>
-          </div>
-          <div className={styles.metaBlock}>
-            <strong>Timeline</strong>
-            <p>{project.timeline}</p>
-          </div>
-        </div>
-      </div>
+        <aside className={cls.meta}>
+          <Meta label="Services"  value={data.services} />
+          <Meta label="Tools"     value={data.tools?.join(', ')} iconList={data.tools} />
+          <Meta label="Value"     value={data.value} />
+          <Meta label="Timeline"  value={data.timeline} />
+        </aside>
+      </header>
 
-      <div className={styles.projectImageContainer}>
-        <img
-          src={project.image}
-          alt={project.title}
-          style={{ width: '100%', borderRadius: '20px' }}
-        />
+      {/* ───────────────── Bento Grid ──────────────── */}
+      <div className={cls.bento}>
+        {data.images.map((src, i) => (
+          <div
+            key={i}
+            className={`${cls.tile} ${cls[sizePattern[i % sizePattern.length]]}`}
+          >
+            <img
+              src={src}
+              alt={`${data.title} ${i + 1}`}
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        ))}
       </div>
-    </div>
+    </section>
   );
 };
+
+/* small helper for the meta column */
+const Meta = ({ label, value, iconList = [] }) => (
+  <div className={cls.metaBlock}>
+    <strong>{label}</strong>
+    {iconList.length ? (
+      <div className={cls.iconRow}>
+        {iconList.map((tool) => (
+          <img key={tool} src={`/tools/${tool}.svg`} alt={tool} title={tool} />
+        ))}
+      </div>
+    ) : (
+      <p>{value}</p>
+    )}
+  </div>
+);
 
 export default ProjectDetail;

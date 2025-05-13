@@ -33,7 +33,7 @@ const projectImages = [
     id: 'threatlocker-steps',
     src: '/gallery/Threatlocker_12step.jpg',
     alt: 'Threatlocker 12-Step',
-    category: 'UI',
+    category: 'Branding',
   },
   {
     id: 'threatlocker-race',

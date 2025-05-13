@@ -1,5 +1,4 @@
-/* ============= Sleek‑Glass Contact Section ============= */
-
+/* ───────── Section base ───────── */
 .contact-section {
     width: 100vw;
     min-height: 100vh;
@@ -11,15 +10,12 @@
     color: #fff;
     font-family: "Cambo", serif;
   }
-  
-  /* Discreet headline accent */
   .contact-section h2 {
     font-family: "Chivo", sans-serif;
     font-size: clamp(2.2rem, 6vw, 3rem);
     font-weight: 600;
     margin-bottom: 48px;
   }
-  
   .contact-section h2::after {
     content: "";
     display: block;
@@ -27,30 +23,59 @@
     height: 2px;
     margin: 12px auto 0;
     background: #6e3fff;
-    opacity: 0.75;
+    opacity: 0.8;
   }
   
-  /* =====  Card  ===== */
+  /* ───────── Neon‑glass card with animated gradient border ───────── */
   .contact-card {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 20px;
     width: 100%;
-    max-width: 600px;
-    padding: 48px 40px;
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 0 22px rgba(0, 0, 0, 0.35);
-    transition: box-shadow 0.35s ease, transform 0.35s ease;
+    max-width: 620px;
+    padding: 52px 44px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(12px);
+    overflow: hidden;
+    transition: transform 0.35s, box-shadow 0.35s;
   }
-  
+  .contact-card::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: conic-gradient(
+      from var(--angle, 0deg),
+      #6e3fff,
+      #d36fff,
+      #ff6f91,
+      #36d1dc,
+      #6e3fff
+    );
+    animation: spin 6s linear infinite;
+    z-index: -1;
+  }
+  @keyframes spin {
+    to { --angle: 360deg; }
+  }
   .contact-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 6px 28px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.55);
   }
   
-  /* =====  Inputs / Textarea  ===== */
+  /* inner backdrop mask to show solid border */
+  .contact-card::after {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    border-radius: inherit;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: -1;
+  }
+  
+  /* ───────── Inputs ───────── */
   .contact-input {
     padding: 14px 20px;
     border-radius: 10px;
@@ -58,24 +83,21 @@
     background: #111;
     color: #fff;
     font-size: 1rem;
-    font-family: "Cambo", serif;
     transition: border-color 0.25s, box-shadow 0.25s;
   }
-  
-  .contact-input::placeholder {
-    color: #777;
-  }
-  
+  .contact-input::placeholder { color: #777; }
   .contact-input:focus {
-    border-color: #6e3fff;
-    box-shadow: 0 0 6px rgba(110, 63, 255, 0.5);
+    border-color: #d36fff;
+    box-shadow: 0 0 6px rgba(211, 111, 255, 0.5);
     outline: none;
   }
   
-  /* =====  Button  ===== */
+  /* ───────── Button with ripple highlight ───────── */
   .contact-submit {
+    position: relative;
+    overflow: hidden;
     align-self: flex-start;
-    padding: 12px 26px;
+    padding: 12px 30px;
     font-family: "Chivo", sans-serif;
     font-size: 1rem;
     font-weight: 600;
@@ -86,9 +108,84 @@
     cursor: pointer;
     transition: transform 0.25s, background 0.25s;
   }
-  
-  .contact-submit:hover {
+  .contact-submit:hover:not([disabled]) {
     transform: translateY(-2px);
     background: #5a2ce6;
+  }
+  .contact-submit[disabled] { opacity: 0.6; cursor: not-allowed; }
+  
+  /* ripple shine */
+  .ripple {
+    position: absolute;
+    top: -120%;
+    left: -45%;
+    width: 190%;
+    height: 330%;
+    background: radial-gradient(ellipse at center, rgba(255,255,255,0.5) 0%, transparent 80%);
+    transform: rotate(25deg);
+    animation: drift 3s linear infinite;
+    pointer-events: none;
+  }
+  @keyframes drift {
+    0%   { transform: translateX(-100%) rotate(25deg); }
+    100% { transform: translateX(100%)  rotate(25deg); }
+  }
+  
+  /* ───────── Toast slide‑in ───────── */
+  .toast {
+    margin-top: 20px;
+    font-family: "Chivo", sans-serif;
+    animation: slide 0.5s ease-out;
+  }
+  @keyframes slide {
+    from { transform: translateY(10px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+  }
+  .toast.success { color: #7bed9f; }
+  .toast.error   { color: #ff6f91; }
+  
+  /* ───────── Confetti & star‑flare ───────── */
+  .confetti-wrapper {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9998;
+  }
+  .confetti {
+    --h: calc(var(--index) * 15);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background: hsl(var(--h), 80%, 60%);
+    transform-origin: center;
+    animation: confetti 2.2s ease-out forwards;
+  }
+  @keyframes confetti {
+    0%   { transform: translate(-50%, -50%) scale(1) rotate(0); opacity: 1; }
+    100% { transform: translate(calc(-50vw + 30px), calc(70vh + 20px))
+                        scale(0.4) rotate(720deg);
+            opacity: 0; }
+  }
+  
+  /* white star‑flare */
+  .star-flare {
+    position: fixed;
+    top: 48%;
+    left: 50%;
+    width: 0; height: 0;
+    pointer-events: none;
+    z-index: 9999;
+    box-shadow:
+      0 0 0 4px rgba(255,255,255,0.6),
+      0 0 16px 6px rgba(211,111,255,0.8);
+    border-radius: 50%;
+    animation: flare 0.7s ease-out forwards;
+  }
+  @keyframes flare {
+    0%   { transform: translate(-50%, -50%) scale(0); }
+    80%  { transform: translate(-50%, -50%) scale(1); }
+    100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
   }
   
