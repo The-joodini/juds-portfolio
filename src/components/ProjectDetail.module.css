@@ -1,4 +1,7 @@
-/* src/components/ProjectDetail.module.css */
+:root{
+  --accent:#d36fff;
+}
+
 /* ─────────── Base layout ─────────── */
 .projectSection{
   position:relative;
@@ -12,118 +15,135 @@
   gap:80px;
 }
 
+/* back button */
 .backBtn{
-  position:absolute;top:20px;left:20px;
+  position:absolute; top:20px; left:20px;
   padding:10px 18px;
   background:rgba(255,255,255,.08);
   border:1px solid #fff;
-  color:#fff;font-family:'Chivo',sans-serif;
-  border-radius:8px;cursor:pointer;
-  transition:.3s;
+  color:#fff;
+  font-family:'Chivo',sans-serif;
+  border-radius:8px;
+  cursor:pointer;
+  transition:transform .3s;
 }
-.backBtn:hover{
-  transform:translateY(-3px);
-  box-shadow:0 8px 20px #d36fff70;
-}
+.backBtn:hover{transform:translateY(-3px);}
 
 /* ─────────── Hero row ─────────── */
-.hero{
-  display:flex;
-  flex-wrap:wrap;
-  gap:60px;
-  justify-content:space-between;
-}
-.headText{
-  flex:1;
-  min-width:260px;
-  max-width:600px;
-}
-.title{
-  font-family:'Chivo',sans-serif;
-  font-size:3.4rem;
-  margin:0 0 18px;
-}
-.desc{
-  font-size:1.2rem;
-  line-height:1.6;
-  color:#ccc;
-  margin:0;
-}
+.hero{display:flex; flex-wrap:wrap; gap:60px; justify-content:space-between;}
+.headText{flex:1; min-width:260px; max-width:600px;}
+.title{font-family:'Chivo',sans-serif; font-size:3.4rem; margin:0 0 18px;}
+.desc{font-size:1.2rem; line-height:1.6; color:#ccc; margin:0;}
 
+/* Challenge Addressed block */
+.challenge{
+  margin:28px 0 0;
+  padding-left:14px;
+  border-left:4px solid var(--accent);
+  font-family:'Chivo',sans-serif;
+  font-size:1.15rem;
+  color:#ccc;
+}
+.challenge strong{color:#fff; font-weight:600;}
+
+/* ─────────── Meta column ─────────── */
 .meta{
-  flex:1;
-  min-width:260px;
-  max-width:500px;
+  flex:1; min-width:260px; max-width:500px;
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
   gap:38px 28px;
   font-family:'Chivo',sans-serif;
   align-self:flex-start;
 }
-.metaBlock{display:flex;flex-direction:column;gap:6px;}
-.metaBlock strong{font-style:italic;font-size:1rem;color:#fff;}
-.metaBlock p{margin:0;font-size:1.05rem;color:#ccc;}
+.metaBlock{display:flex; flex-direction:column; gap:6px;}
+.metaBlock strong{font-style:italic; font-size:1rem; color:#fff;}
+.metaBlock p{margin:0; font-size:1.05rem; color:#ccc;}
+.iconRow{display:flex; gap:10px; flex-wrap:wrap;}
+.iconRow img{width:28px; filter:invert(1); opacity:.9;}
 
-.iconRow{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-}
-.iconRow img{
-  width:28px;
-  filter:invert(1);
-  opacity:.8;
-}
+/* ─────────── Masonry gallery ─────────── */
+.bento{column-count:3; column-gap:24px;}
+@media(max-width:1100px){ .bento{column-count:2;} }
+@media(max-width:700px){  .bento{column-count:1;} }
 
-/* ─────────── Bento grid ─────────── */
-.bento{
-  display:grid;
-  grid-auto-rows:170px;                               /* baseline row height */
-  grid-template-columns:repeat(auto-fill,minmax(170px,1fr));
-  gap:24px;
-}
-
-/* base tile */
 .tile{
-  position:relative;
-  overflow:hidden;
-  border-radius:18px;
-  background:#111;
-  cursor:zoom-in;
-  transition:transform .35s,box-shadow .35s;
+  display:inline-block; width:100%; margin:0 0 24px;
+  position:relative; overflow:hidden;
+  border-radius:18px; background:#111; cursor:zoom-in;
+  transition:transform .35s;
 }
-.tile img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-  transition:transform .5s;
+.tile img,.tile video{
+  width:100%; height:auto; object-fit:cover;
+  display:block; transition:transform .5s;
 }
-.tile:hover{
-  transform:translateY(-8px) scale(1.03);
-  box-shadow:0 14px 34px rgba(0,0,0,.65),
-             0 0 10px 2px #6e3fff55;
+.tile:hover{transform:translateY(-8px) scale(1.03);}   /* no glow */
+.tile:hover img,.tile:hover video{transform:scale(1.08) rotate(.4deg);}
+
+/* ─────────── Lightbox overlay ─────────── */
+.lightbox{
+  position:fixed; inset:0;
+  background:rgba(0,0,0,.92);
+  display:flex; align-items:center; justify-content:center;
+  z-index:9999;
 }
-.tile:hover img{
-  transform:scale(1.08) rotate(.4deg);
+.lightboxImg{
+  max-width:90vw; max-height:90vh;
+  border-radius:12px;
 }
 
-/* size modifiers */
-.sm   {grid-row:span 1; grid-column:span 1;}
-.wide {grid-row:span 1; grid-column:span 2;}
-.tall {grid-row:span 2; grid-column:span 1;}
-.lg   {grid-row:span 2; grid-column:span 2;}
+/* ─────────── Navigation & Close icons ─────────── */
+.lightboxBtn,
+.close{
+  position:absolute;
+  background:none !important;
+  border:none !important;
+  padding:0 !important;
+  margin:0;
+  color:#fff;                         /* default white */
+  font-family:'Chivo',sans-serif;
+  font-weight:300;
+  line-height:1;
+  cursor:pointer;
+  user-select:none;
+  box-shadow:none !important;         /* kill any glow */
+  outline:none;
+  -webkit-tap-highlight-color:transparent;
+}
 
-/* ─────────── Mobile tweak ─────────── */
+/* arrows */
+.lightboxBtn{
+  width:72px; height:72px;            /* tap‑area, invisible */
+  display:flex; align-items:center; justify-content:center;
+  top:50%; 
+  font-size:3rem;
+}
+.prev{left:24px;}
+.next{right:24px;}
+
+/* close */
+.close{
+  top:32px; right:28px;
+  font-size:2.6rem;
+}
+
+/* hover / focus – color swap ONLY */
+.lightboxBtn:hover,
+.lightboxBtn:focus-visible,
+.close:hover,
+.close:focus-visible{
+  color:var(--accent) !important;     /* purple tint */
+}
+
+/* ─────────── Mobile tweaks ─────────── */
 @media(max-width:640px){
   .title{font-size:2.4rem;}
-  .projectSection{gap:60px;padding:80px 24px;}
-  .bento{
-    grid-template-columns:repeat(auto-fill,minmax(100%,1fr));
-    grid-auto-rows:auto;
-  }
-  .sm,.wide,.tall,.lg{
-    grid-row:span 1;
-    grid-column:span 1;
-  }
+  .projectSection{gap:60px; padding:80px 24px;}
+
+  .lightboxBtn{width:56px; height:56px; font-size:2.6rem;}
+  .prev{left:16px;} .next{right:16px;}
+
+  .close{font-size:2.2rem; top:20px; right:16px;}
 }
+
+/* size‑modifier stubs */
+.sm{} .wide{} .tall{} .lg{}

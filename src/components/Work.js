@@ -4,10 +4,9 @@ import Masonry from 'react-masonry-css';
 import { useNavigate } from 'react-router-dom';
 import getStyles from '../styles';
 
-/**
- * Add or rename image files in /public/gallery so each `src` path below exists.
- * Example:  /public/gallery/threatlockerAds.jpg
- */
+const ACCENT = '#6e3fff';            // latest purple
+
+/* ------------- Project thumbnails ------------- */
 const projectImages = [
   // ——— Original items ———
   {
@@ -17,20 +16,8 @@ const projectImages = [
     category: 'Branding',
   },
   {
-    id: 'coke-can',
-    src: '/gallery/cokeCan.png',
-    alt: 'Coke Can Design',
-    category: 'Branding',
-  },
-  {
-    id: 'mom-fries',
-    src: '/gallery/momFries.jpg',
-    alt: 'Mom’s Fries Ad',
-    category: 'UI',
-  },
-  {
     id: 'charleys-cheesesteak',
-    src: '/gallery/charleysCheesesteak.png',
+    src: '/gallery/cheesesteak.png',
     alt: 'Charleys Cheesesteak Poster',
     category: 'UI',
   },
@@ -39,12 +26,6 @@ const projectImages = [
     src: '/gallery/Threatlocker_12step.jpg',
     alt: 'ThreatLocker 12‑Step Campaign',
     category: 'Branding',
-  },
-  {
-    id: 'threatlocker-race',
-    src: '/gallery/ThreatlockerRace.png',
-    alt: 'ThreatLocker Race Campaign Animation',
-    category: 'Animation',
   },
   {
     id: 'moms-fuego',
@@ -56,29 +37,22 @@ const projectImages = [
   // ——— New items ———
   {
     id: 'threatlocker-ads',
-    src: '/gallery/threatlockerAds.jpg',
+    src: '/gallery/TL_Fin_580x400.gif',
     alt: 'ThreatLocker Ads Series',
     category: 'Branding',
   },
   {
     id: 'daves-hot-chicken',
-    src: '/gallery/davesHotChicken.jpg',
+    src: '/gallery/DavesSando.jpg',
     alt: 'Dave’s Hot Chicken Concept',
     category: 'Branding',
   },
   {
-    id: 'buddys',
-    src: '/gallery/buddys.jpg',
-    alt: 'Buddy’s Campaign',
-    category: 'Branding',
-  },
-  {
     id: 'darko',
-    src: '/gallery/darko.jpg',
+    src: '/gallery/DarkoBrand.png',
     alt: 'Darko Design System',
     category: 'UI',
   },
-
 
   // ——— “In the Wild” live work ———
   {
@@ -89,13 +63,13 @@ const projectImages = [
   },
   {
     id: 'threatlocker-ucf',
-    src: '/gallery/threatlockerUcf.jpg',
+    src: '/gallery/TLUCF3.jpg',
     alt: 'ThreatLocker × UCF Stadium Activation',
     category: 'In the Wild',
   },
   {
     id: 'threatlocker-orlando-city',
-    src: '/gallery/threatlockerOrlandoCity.jpg',
+    src: '/gallery/TLOrlandoC1.png',
     alt: 'ThreatLocker Orlando City Partnership',
     category: 'In the Wild',
   },
@@ -119,11 +93,7 @@ const Work = ({ theme = 'dark' }) => {
       ? projectImages
       : projectImages.filter((img) => img.category === filter);
 
-  const breakpointColumnsObj = {
-    default: 3,
-    1100: 2,
-    700: 1,
-  };
+  const breakpointColumnsObj = { default: 3, 1100: 2, 700: 1 };
 
   return (
     <section style={styles.section} id="work">
@@ -148,7 +118,7 @@ const Work = ({ theme = 'dark' }) => {
               border: `1px solid ${theme === 'dark' ? '#fff' : '#000'}`,
               borderRadius: '20px',
               cursor: 'pointer',
-              background: filter === cat ? '#d36fff' : 'transparent',
+              background: filter === cat ? ACCENT : 'transparent',
               color:
                 filter === cat ? '#fff' : theme === 'dark' ? '#fff' : '#000',
               transition: 'all 0.3s ease-in-out',
