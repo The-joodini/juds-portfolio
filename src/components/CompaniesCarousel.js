@@ -8,6 +8,7 @@ const companyLogos = [
   '/logos/Maid_in_sunshine.webp',
   '/logos/coltsLogo.png',
   '/logos/orlandoCity.png',
+  '/logos/CharleysSteaksLogo.png'
 
 ];
 
