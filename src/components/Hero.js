@@ -4,10 +4,10 @@ import './Hero.css';
 
 /* images served from /public/gallery */
 const cardImages = [
-  '/gallery/Maid_in_sunshine.webp',
-  '/gallery/Maid_in_sunshine.webp',
-  '/gallery/Maid_in_sunshine.webp',
-  '/gallery/Maid_in_sunshine.webp',
+  '/gallery/cokeCan.png',
+  '/gallery/DavesSoda.jpg',
+  '/gallery/momFries.jpg',
+  '/gallery/campFeverShirt.jpg',
 ];
 
 const keywords = ['Brands', 'Products', 'Experiences', 'Stories'];

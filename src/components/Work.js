@@ -4,52 +4,110 @@ import Masonry from 'react-masonry-css';
 import { useNavigate } from 'react-router-dom';
 import getStyles from '../styles';
 
+/**
+ * Add or rename image files in /public/gallery so each `src` path below exists.
+ * Example:  /public/gallery/threatlockerAds.jpg
+ */
 const projectImages = [
+  // ——— Original items ———
   {
     id: 'camp-fever',
     src: '/gallery/campFeverShirt.jpg',
-    alt: 'Camp Fever Shirt',
+    alt: 'Camp Fever Shirt',
     category: 'Branding',
   },
   {
     id: 'coke-can',
     src: '/gallery/cokeCan.png',
-    alt: 'Coke Can Design',
+    alt: 'Coke Can Design',
     category: 'Branding',
   },
   {
     id: 'mom-fries',
     src: '/gallery/momFries.jpg',
-    alt: 'Mom’s Fries Ad',
+    alt: 'Mom’s Fries Ad',
     category: 'UI',
   },
   {
-    id: 'cheesesteak',
-    src: '/gallery/cheesesteak.png',
-    alt: 'Cheesesteak Poster',
+    id: 'charleys-cheesesteak',
+    src: '/gallery/charleysCheesesteak.png',
+    alt: 'Charleys Cheesesteak Poster',
     category: 'UI',
   },
   {
     id: 'threatlocker-steps',
     src: '/gallery/Threatlocker_12step.jpg',
-    alt: 'Threatlocker 12-Step',
+    alt: 'ThreatLocker 12‑Step Campaign',
     category: 'Branding',
   },
   {
     id: 'threatlocker-race',
     src: '/gallery/ThreatlockerRace.png',
-    alt: 'Threatlocker Race Campaign',
+    alt: 'ThreatLocker Race Campaign Animation',
     category: 'Animation',
   },
   {
     id: 'moms-fuego',
     src: '/gallery/MomsFuego.jpg',
-    alt: 'Mom’s Fuego Branding',
+    alt: 'Mom’s Fuego Branding',
     category: 'Branding',
+  },
+
+  // ——— New items ———
+  {
+    id: 'threatlocker-ads',
+    src: '/gallery/threatlockerAds.jpg',
+    alt: 'ThreatLocker Ads Series',
+    category: 'Branding',
+  },
+  {
+    id: 'daves-hot-chicken',
+    src: '/gallery/davesHotChicken.jpg',
+    alt: 'Dave’s Hot Chicken Concept',
+    category: 'Branding',
+  },
+  {
+    id: 'buddys',
+    src: '/gallery/buddys.jpg',
+    alt: 'Buddy’s Campaign',
+    category: 'Branding',
+  },
+  {
+    id: 'darko',
+    src: '/gallery/darko.jpg',
+    alt: 'Darko Design System',
+    category: 'UI',
+  },
+
+
+  // ——— “In the Wild” live work ———
+  {
+    id: 'threatlocker-australia',
+    src: '/gallery/TLWildAu2.png',
+    alt: 'ThreatLocker Australia Campaign',
+    category: 'In the Wild',
+  },
+  {
+    id: 'threatlocker-ucf',
+    src: '/gallery/threatlockerUcf.jpg',
+    alt: 'ThreatLocker × UCF Stadium Activation',
+    category: 'In the Wild',
+  },
+  {
+    id: 'threatlocker-orlando-city',
+    src: '/gallery/threatlockerOrlandoCity.jpg',
+    alt: 'ThreatLocker Orlando City Partnership',
+    category: 'In the Wild',
+  },
+  {
+    id: 'threatlocker-microsoft-extension',
+    src: '/gallery/TLWeb1.png',
+    alt: 'ThreatLocker Microsoft Edge Extension',
+    category: 'In the Wild',
   },
 ];
 
-const categories = ['All', 'UI', 'Branding', 'Animation'];
+const categories = ['All', 'UI', 'Branding', 'Animation', 'In the Wild'];
 
 const Work = ({ theme = 'dark' }) => {
   const navigate = useNavigate();
@@ -72,7 +130,15 @@ const Work = ({ theme = 'dark' }) => {
       <h2 style={styles.anchorHeader}>My Work</h2>
 
       {/* Filter Buttons */}
-      <div style={{ display: 'flex', gap: '12px', marginBottom: '40px', justifyContent: 'center', flexWrap: 'wrap' }}>
+      <div
+        style={{
+          display: 'flex',
+          gap: '12px',
+          marginBottom: '40px',
+          justifyContent: 'center',
+          flexWrap: 'wrap',
+        }}
+      >
         {categories.map((cat) => (
           <button
             key={cat}
@@ -83,7 +149,8 @@ const Work = ({ theme = 'dark' }) => {
               borderRadius: '20px',
               cursor: 'pointer',
               background: filter === cat ? '#d36fff' : 'transparent',
-              color: filter === cat ? '#fff' : theme === 'dark' ? '#fff' : '#000',
+              color:
+                filter === cat ? '#fff' : theme === 'dark' ? '#fff' : '#000',
               transition: 'all 0.3s ease-in-out',
               fontFamily: "'Chivo', sans-serif",
               fontWeight: 500,

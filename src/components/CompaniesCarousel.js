@@ -6,6 +6,9 @@ const companyLogos = [
   '/logos/mexican camelwhite.png',
   '/logos/daveslogo.svg',
   '/logos/Maid_in_sunshine.webp',
+  '/logos/coltsLogo.png',
+  '/logos/orlandoCity.png',
+
 ];
 
 const CompaniesCarousel = () => {

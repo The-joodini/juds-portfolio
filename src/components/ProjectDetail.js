@@ -97,7 +97,7 @@ const Meta = ({ label, value, iconList = [] }) => (
     {iconList.length ? (
       <div className={cls.iconRow}>
         {iconList.map((tool) => (
-          <img key={tool} src={`/tools/${tool}.svg`} alt={tool} title={tool} />
+          <img key={tool} src={`/tools/${tool}.png`} alt={tool} title={tool} />
         ))}
       </div>
     ) : (
