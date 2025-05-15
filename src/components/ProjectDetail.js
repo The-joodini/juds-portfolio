@@ -60,21 +60,12 @@ const projectData = {
   },
 
   /* ───────── New entries ───────── */
-  'mom-fries': {
-    title: 'Mom’s Fries Ad',
-    desc:
-      'Playful social ad for a local diner’s new fries, featuring retro typography and bright photography.',
-    images: ['/gallery/momFries.jpg','/gallery/momFuego.jpg',],
-    services: 'Social Graphic · Art Direction',
-    tools: ['photoshop', 'illustrator'],
-    value: '↑18 % click‑through on launch day',
-    timeline: '3 days',
-  },
+
   'charleys-cheesesteak': {
     title: 'Charleys Cheesesteak Poster',
     desc:
       'High‑contrast poster promoting a limited‑time cheesesteak flavour.',
-    images: ['/gallery/charleysCheesesteak.webp'],
+    images: ['/gallery/cheesesteak1.png','/gallery/cheesesteak2.jpg','/gallery/cheesesteak3.jpg','/gallery/cheesesteak4.jpg','/gallery/cheesesteak5.jpg'],
     services: 'Print Design',
     tools: ['illustrator', 'indesign'],
     value: 'Franchise traffic lift during promo week',
@@ -94,7 +85,7 @@ const projectData = {
     title: 'Mom’s Fuego Branding',
     desc:
       'Spicy sauce line identity with hand‑drawn peppers and bold typography.',
-    images: ['/gallery/MomsFuego.jpg'],
+    images: ['/gallery/MomsFuego.jpg','/gallery/momFries.jpg'],
     services: 'Brand Identity',
     tools: ['illustrator', 'photoshop'],
     value: 'Shelf appeal that stands out',
@@ -155,7 +146,10 @@ const projectData = {
     title: 'ThreatLocker Australia Campaign',
     desc:
       'Localized launch campaign introducing ThreatLocker to the AU market.',
-    images: ['/gallery/threatlockerAustralia.webp'],
+    images: ['/gallery/TLAUArt1.jpg','/gallery/TLAUArt3.jpg','/gallery/TLWildAU1.png','/gallery/TLWildAU2.png',
+      '/gallery/TLAUBill1.png','/gallery/TLAUBill2.png','/gallery/TLAUBill3.png','/gallery/TLAUBill5.png',
+
+    ],
     services: 'Campaign · Digital & Print',
     tools: ['illustrator', 'photoshop'],
     value: '150+ qualified leads in first month',
@@ -165,7 +159,7 @@ const projectData = {
     title: 'ThreatLocker × UCF Stadium Activation',
     desc:
       'In‑stadium LED animations and promo materials for UCF football games.',
-    images: ['/gallery/threatlockerUcf.webp'],
+    images: ['/gallery/TLUCF1.jpg','/gallery/TLUCF2.jpg','/gallery/TLUCF3.jpg','/gallery/TLUCF4.jpg',],
     services: 'Live Event Graphics · Motion',
     tools: ['aftereffects', 'illustrator'],
     value: 'Audience reach 45 k per game',
@@ -175,7 +169,7 @@ const projectData = {
     title: 'ThreatLocker Orlando City Partnership',
     desc:
       'Sponsorship creative across Jumbotron loops, social bites, and pitch‑side LEDs.',
-    images: ['/gallery/threatlockerOrlandoCity.webp'],
+    images: ['/gallery/TLOrlandoCArt.gif','/gallery/TLOrlandoC1.png','/gallery/TLOrlandoC2.png','/gallery/OrlandoCity.mp4'],
     services: 'Sponsorship Creative · Motion',
     tools: ['aftereffects', 'photoshop'],
     value: 'Social engagement ↑27 %',
