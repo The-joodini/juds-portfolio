@@ -75,7 +75,7 @@ const projectData = {
     title: 'ThreatLocker 12‑Step Series',
     desc:
       'Educational infographic series that simplifies ThreatLocker’s security process.',
-    images: ['/gallery/Threatlocker_12step.webp'],
+    images: ['/gallery/Threatlocker_12step.jpg','/gallery/ThreatlockerRace.png','/gallery/TLMST1.png','/gallery/TLMST2.png'],
     services: 'Infographic · Illustration',
     tools: ['illustrator', 'figma'],
     value: 'Training completion rate +24 %',
@@ -94,7 +94,7 @@ const projectData = {
   'threatlocker-ads': {
     title: 'ThreatLocker Ads Series',
     desc: 'Paid media banners & motion ads driving MSP lead gen.',
-    images: ['/gallery/TL_Fin_240x400.gif','/gallery/TL_Fin_580x400.gif','/gallery/TL_Fin_930x180.gif'],
+    images: ['/gallery/TL_Fin_240x400.gif','/gallery/TL_Fin_580x400.gif','/gallery/TL_Fin_930x180.gif','/gallery/TLCarAD.png','/gallery/TLRingf_980x120.gif','/gallery/TLDetect.gif'],
     services: 'Digital Ads · Motion',
     tools: ['aftereffects', 'photoshop'],
     value: 'Cost‑per‑lead ↓32 %',
